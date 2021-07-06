@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<odoo>
+    <data>
+        <record id="partner_form_view_inherit" model="ir.ui.view">
+            <field name="name">res.partner.sku</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='property_payment_term_id']" position="after">
+                    <field name="customer_product_sku">
+                        <tree>
+                            <field name="name"/>
+                            <field name="product_sku"/>
+                        </tree>
+
+                    </field>
+                    <field name="credit_period"/>
+                </xpath>
+            </field>
+        </record>
+        <record id="res_partner_tree_tree_view_inherit" model="ir.ui.view">
+            <field name="name">res partner tree inheit</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='display_name']" position="after">
+                    <field name="ref" />
+                    <field name="user_id" />
+                    <field name="property_payment_term_id" />
+                    <field name="credit_limit" />
+                </xpath>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="sku_partner_form">
+            <field name="name">sku.partner.form</field>
+            <field name="model">sku.partner</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="name"/>
+                        <field name="partner_id" invisible="1"/>
+                        <field name="product_sku"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>

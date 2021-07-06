@@ -1,0 +1,22 @@
+<odoo>
+    <data>
+
+        <record id="account_invoice_form_inherited" model="ir.ui.view">
+            <field name="name">Vendor Bill Form</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_move_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='invoice_date']" position="after">
+                    <field name="is_landed_cost" string="Landed Cost"
+                           attrs="{'invisible': [('move_type', 'in', ('out_invoice', 'out_refund', 'out_receipt'))]}"/>
+                    <field name="purchase_order_id" string="Purchase Order"
+                           attrs="{'invisible': ['|',('is_landed_cost', '=', False),('move_type', 'in', ('out_invoice', 'out_refund', 'out_receipt'))],
+                           'required': [('is_landed_cost', '=', True)]}"/>
+                    <field name="picking_ids" string="Pickings" widget="many2many_tags"
+                           attrs="{'invisible': ['|',('is_landed_cost', '=', False),('move_type', 'in', ('out_invoice', 'out_refund', 'out_receipt'))],
+                           'required': [('is_landed_cost', '=', True)]}"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

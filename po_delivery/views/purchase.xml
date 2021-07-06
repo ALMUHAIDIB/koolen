@@ -1,0 +1,26 @@
+<odoo>
+    <data>
+        <record id="purchase_serial_qty_shipment_form_view" model="ir.ui.view">
+            <field name="name">purchase.serial.qty.shipment</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase.purchase_order_form"/>
+            <field name="arch" type="xml">
+                <!-- dummy, will be modified by groups -->
+                <xpath expr="//field[@name='partner_ref']" position="after">
+                    <field name="number_of_shipments"/>
+                </xpath>
+                <xpath expr="//form/sheet/notebook" position="inside">
+                    <page string="Shipments">
+                        <field name="shipment_ids">
+                            <tree editable="top">
+                                <field name="product_id"/>
+                                <field name="serial"/>
+                                <field name="qty"/>
+                            </tree>
+                        </field>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

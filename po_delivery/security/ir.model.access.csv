@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_serial_qty_delivery,po_delivery.serial_qty_delivery,model_serial_qty_shipment,,1,1,1,1

@@ -1,0 +1,65 @@
+<odoo>
+    <data>
+        <!-- Inherit Form View to Modify it -->
+        <record id="stock_picking_type_salesperson" model="ir.ui.view">
+            <field name="name">stock.picking.type.salesperson</field>
+            <field name="model">stock.picking.type</field>
+            <field name="inherit_id" ref="stock.view_picking_type_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='sequence_code']" position="after">
+                    <field name="salesperson"/>
+                </xpath>
+            </field>
+        </record>
+        <!-- Inherit Form View to Modify it -->
+        <record id="stock_picking_user" model="ir.ui.view">
+            <field name="name">stock.picking.user</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.view_picking_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='picking_type_id']" position="after">
+                    <field name="salesperson" invisible="True"/>
+                    <field name="user_id" attrs="{'required': [('salesperson', '=', True)]}"/>
+                </xpath>
+            </field>
+        </record>
+        <!-- Inherit Form View to Modify it -->
+        <record id="account_move_line_add_branch" model="ir.ui.view">
+            <field name="name">account.move.line.add.branch</field>
+            <field name="model">account.move.line</field>
+            <field name="inherit_id" ref="account.view_move_line_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='partner_id']" position="after">
+                    <field name="user_id" string="Sales Person"/>
+                    <field name="branch"/>
+                    <field name="mmm_user_id"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="account_move_line_inherit_tree" model="ir.ui.view">
+            <field name="name">account.move.line.tree</field>
+            <field name="model">account.move.line</field>
+            <field name="inherit_id" ref="account.view_move_line_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='partner_id']" position="after">
+                    <field name="user_id" string="Sales Person"/>
+                </xpath>
+            </field>
+        </record>
+        <record id="account_payment_inherit_tree_inh" model="ir.ui.view">
+            <field name="name">account.payment.tree.inh</field>
+            <field name="model">account.payment</field>
+            <field name="inherit_id" ref="account.view_account_payment_tree"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//field[@name='partner_id']" position="after">
+                    <field name="sales_person"/>
+                    <!-- Add your fields or attributes here -->
+                </xpath>
+
+            </field>
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+        <record id="leaving_entering_picking_form" model="ir.ui.view">
+            <field name="name">leaving.entering.picking</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.view_picking_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='date_done']" position="replace">
+                    <label for="date_done" string="Date Of Entering" class="oe_inline" attrs="{'invisible':['|',('state', '!=', 'done'),('picking_type_code', '=', 'outgoing')]}"/>
+                    <field name="date_done" nolabel="1" attrs="{'invisible': ['|',('state', '!=', 'done'),('picking_type_code', '=', 'outgoing')]}" class="oe_inline"/>
+                    <label for="date_done" string="Date Of Leaving" class="oe_inline" attrs="{'invisible':['|',('state', '!=', 'done'),('picking_type_code', '=', 'incoming')]}"/>
+                    <field name="date_done" nolabel="1" attrs="{'invisible': ['|',('state', '!=', 'done'),('picking_type_code', '=', 'incoming')]}" class="oe_inline"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

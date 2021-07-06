@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_sku_partner,sku_partner_admin,model_sku_partner,,1,1,1,1
+access_account_line,sku_line_admin,account.model_account_move_line,,1,1,1,1

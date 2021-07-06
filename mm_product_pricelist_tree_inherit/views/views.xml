@@ -1,0 +1,18 @@
+<odoo>
+    <data>
+
+        <record id="product_pricelist_item_tree_view_inherit" model="ir.ui.view">
+            <field name="name">product.pricelist.item.tree.inherit</field>
+            <field name="model">product.pricelist.item</field>
+            <field name="inherit_id" ref="product.product_pricelist_item_tree_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//tree" position="replace">
+                  <tree string="Pricelist Items">
+                    <field colspan="4" name="name"/>
+                    <field name="price"/>
+                  </tree>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

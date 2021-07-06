@@ -1,0 +1,60 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+    <!--
+    <record model="ir.ui.view" id="mmm_bransh.list">
+      <field name="name">mmm_bransh list</field>
+      <field name="model">mmm_bransh.mmm_bransh</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="value"/>
+          <field name="value2"/>
+        </tree>
+      </field>
+    </record>
+    -->
+
+    <!-- actions opening views on models -->
+    <!--
+    <record model="ir.actions.act_window" id="mmm_bransh.action_window">
+      <field name="name">mmm_bransh window</field>
+      <field name="res_model">mmm_bransh.mmm_bransh</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+    -->
+
+    <!-- server action to the one above -->
+    <!--
+    <record model="ir.actions.server" id="mmm_bransh.action_server">
+      <field name="name">mmm_bransh server</field>
+      <field name="model_id" ref="model_mmm_bransh_mmm_bransh"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": self._name,
+        }
+      </field>
+    </record>
+    -->
+
+    <!-- Top menu item -->
+    <!--
+    <menuitem name="mmm_bransh" id="mmm_bransh.menu_root"/>
+    -->
+    <!-- menu categories -->
+    <!--
+    <menuitem name="Menu 1" id="mmm_bransh.menu_1" parent="mmm_bransh.menu_root"/>
+    <menuitem name="Menu 2" id="mmm_bransh.menu_2" parent="mmm_bransh.menu_root"/>
+    -->
+    <!-- actions -->
+    <!--
+    <menuitem name="List" id="mmm_bransh.menu_1_list" parent="mmm_bransh.menu_1"
+              action="mmm_bransh.action_window"/>
+    <menuitem name="Server to list" id="mmm_bransh" parent="mmm_bransh.menu_2"
+              action="mmm_bransh.action_server"/>
+    -->
+  </data>
+</odoo>

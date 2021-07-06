@@ -1,0 +1,118 @@
+<odoo>
+    <data>
+        <record id="sales_target_model" model="ir.ui.view">
+            <field name="name">Sales Target</field>
+            <field name="model">sales.target</field>
+            <field name="arch" type="xml">
+                <form string="Sales Target">
+                    <header>
+                        <button string="Update" name="update" type="object" class="btn-primary"/>
+                    </header>
+                    <sheet>
+
+                        <group>
+                            <group>
+                                <field name="categ_id" readonly="False" required="1"/>
+                                <field name="product_id" required="1"/>
+                                <field name="onhand" required="1"/>
+                                <field name="team_id" required="1"/>
+
+                                <field name="user_id" required="1" />
+
+                                <field name="month" required="1"/>
+                            </group>
+                            <group>
+                                <field name="target" required="1" />
+                                <field name="achieved" />
+                                <field name="sold_value"/>
+                                <field name="sold_value_stored" invisible="1"/>
+                                <field name="achieved_percent" />
+                                <field name="achieved_stored" invisible="1"/>
+                                <field name="achieved_percent_stored" invisible="1"/>
+                                <field name="assigned_target" invisible="1"/>
+                                <field name="value_target"/>
+                                <field name="value_target_store" invisible="1"/>
+                            </group>
+                        </group>
+
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="sales_target_model_tree" model="ir.ui.view">
+            <field name="name">Sales Target</field>
+            <field name="model">sales.target</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="categ_id"/>
+                    <field name="product_id"/>
+                    <field name="user_id"/>
+                    <field name="month"/>
+                    <field name="target"/>
+                    <field name="achieved_stored"/>
+                    <field name="achieved_percent_stored"/>
+                    <field name="sold_value_stored"/>
+                    <field name="value_target_store"/>
+
+                </tree>
+            </field>
+        </record>
+        <!--        <record model="ir.ui.view" id="action_sales_target_graph">-->
+        <!--            <field name="name">sales.target.graph</field>-->
+        <!--            <field name="model">sales.target</field>-->
+        <!--            <field name="arch" type="xml">-->
+        <!--                <graph string="Sales Target">-->
+        <!--                    <field name="product_id" type="row"/>-->
+        <!--                    <field name="user_id" type="row"/>-->
+        <!--                    <field name="achieved_stored" type="measure"/>-->
+        <!--                    <field name="achieved_percent_stored" type="measure"/>-->
+        <!--                    <field name="sold_value_stored" type="measure"/>-->
+        <!--                </graph>-->
+        <!--            </field>-->
+        <!--        </record>-->
+
+        <record id='sales_target_model_action' model='ir.actions.act_window'>
+            <field name="name">Sales Target</field>
+            <field name="res_model">sales.target</field>
+            <field name="view_mode">dashboard,tree,form</field>
+            <field name="target">current</field>
+        </record>
+
+        <record id='my_sales_target_model_action' model='ir.actions.act_window'>
+            <field name="name">My performance</field>
+            <field name="res_model">sales.target</field>
+            <field name="view_mode">dashboard,tree,form</field>
+            <field name="target">current</field>
+            <field name="domain">[('user_id.id','=', uid)]</field>
+        </record>
+
+        <record id='team_sales_target_model_action' model='ir.actions.act_window'>
+            <field name="name">Team performance</field>
+            <field name="res_model">sales.target</field>
+            <field name="view_mode">dashboard,tree,form</field>
+            <field name="target">current</field>
+            <field name="domain">[('team_id.member_ids','in', uid)]</field>
+        </record>
+
+
+        <menuitem id="sales_target_model_menuitem_root"
+                  name="Sales Target"
+                  web_icon="mm_sales_target,static/description/icon.png"
+                  groups="mm_sales_target.sales_target_user_group"
+                  sequence="8"/>
+        <menuitem id="my_sales_target_model_menuitem" name="My Performance" groups="mm_sales_target.sales_target_user_group"
+                  parent="mm_sales_target.sales_target_model_menuitem_root" sequence="1" action="my_sales_target_model_action"/>
+
+        <menuitem id="team_sales_target_model_menuitem" name="Team Performance" groups="mm_sales_target.sales_target_leader_group" parent="mm_sales_target.sales_target_model_menuitem_root" sequence="2" action="team_sales_target_model_action"/>
+
+
+
+        <menuitem id="sales_target_model_menuitem" name="Sales Target" groups="mm_sales_target.sales_target_manager_group"
+                  parent="mm_sales_target.sales_target_model_menuitem_root" sequence="3" action="sales_target_model_action"/>
+
+
+
+
+    </data>
+</odoo>

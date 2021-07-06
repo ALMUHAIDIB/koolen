@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+
+        <record id="account_accountant.menu_accounting" model="ir.ui.menu">
+            <field name="groups_id" eval="[(6, 0, [ref('mm_security_custom.group_show_accounting')] )]"/>
+        </record>
+        <menuitem id="menu_sales_menus" name="Invoices" parent="sale.sale_menu_root" sequence="101"/>
+        <menuitem action="mm_security_custom.action_server_module_account_invoices" id="menu_action_invoice_tree1" parent="menu_sales_menus" sequence="1"/>
+        <menuitem action="mm_security_custom.action_server_module_account_credits"
+                  id="menu_action_invoice_out_refund"
+                  parent="menu_sales_menus"
+                  sequence="1"/>
+        <menuitem action="account.action_account_payments" id="menu_action_account_payments_receivable" parent="menu_sales_menus" sequence="15"/>
+
+        <record id="sale.menu_sale_invoicing" model="ir.ui.menu">
+            <field name="groups_id" eval="[(6, 0, [ref('sales_team.group_sale_salesman_all_leads')] )]"/>
+        </record>
+
+
+
+    </data>
+</odoo>

@@ -1,0 +1,17 @@
+<odoo>
+    <data>
+        <record id="stock_landed_cost_inherited" model="ir.ui.view">
+            <field name="name">Stock Landed Cost Form</field>
+            <field name="model">stock.landed.cost</field>
+            <field name="inherit_id" ref="stock_landed_costs.view_stock_landed_cost_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='date']" position="after">
+                    <field name="purchase_order_id" string="Purchase Order"/>
+                </xpath>
+                <xpath expr="//field[@name='picking_ids']" position="attributes">
+                    <attribute name="string">Pickings</attribute>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

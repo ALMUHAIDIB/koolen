@@ -1,0 +1,63 @@
+<odoo>
+    <data>
+        <record id="view_sales_target_graph" model="ir.ui.view">
+             <field name="name">sales.target.graph</field>
+             <field name="model">sales.target</field>
+             <field name="arch" type="xml">
+                 <graph string="sales target" type="bar">
+                     <field name="month" type="row" />
+                     <field name="target" type="measure"/>
+                 </graph>
+             </field>
+         </record>
+
+        <record id="sales_target_report_view_pivot" model="ir.ui.view">
+             <field name="name">sales.target.pivot</field>
+             <field name="model">sales.target</field>
+             <field name="arch" type="xml">
+                 <pivot string="Sales Target" disable_linking="True" display_quantity="true">
+                     <field name="categ_id" type="row"/>
+                     <field name="target" type="measure"/>
+                     <field name="achieved_stored" type="measure"/>
+                     <field name="sold_value_stored" type="measure"/>
+                 </pivot>
+             </field>
+        </record>
+        <record id="sales_target_view_dashboard" model="ir.ui.view">
+            <field name="name">sales.target.view.dashboard</field>
+            <field name="model">sales.target</field>
+            <field name="mode">primary</field>
+            <field name="arch" type="xml">
+                <dashboard>
+                    <view type="graph" ref="mm_sales_target.view_sales_target_graph"/>
+                    <group>
+                        <group>
+<!--                            <aggregate name="price_subtotal_confirmed_orders" string="Total Sales" field="price_total" help="Total, Tax Included" widget="monetary"/>-->
+                            <aggregate name="target_all_orders" string="Total Target" field="target" />
+                            <aggregate name="sold_qty_all_orders" string="Total Sold Qty" field="achieved_stored" />
+                            <aggregate name="value_target_all_orders" string="Total Value Target" field="value_target_store" widget="monetary" />
+
+                            <aggregate name="sold_value_all_orders" string="Total Sold Value" field="sold_value_stored" widget="monetary" />
+<!--                            <aggregate name="order_id_confirmed_orders" field="order_id" string="Orders"/>-->
+                            <formula name="value_percentage" string="Value %" value="record.sold_value_all_orders*100 / record.value_target_all_orders" />
+                            <formula name="qty_percentage" string="QTY %" value="record.sold_qty_all_orders*100 / record.target_all_orders"/>
+<!--                            <formula name="total" string="Average Order" value="record.price_subtotal_confirmed_orders / record.order_id_confirmed_orders" widget="monetary"/>-->
+<!--                            <aggregate name="days_to_confirm" string="Days to Confirm" field="days_to_confirm" group_operator="avg"-->
+<!--                        value_label="day(s)"/>-->
+                            <aggregate name="Products" string="# Products" field="product_id"/>
+                            <aggregate name="Teams" string="# Teams" field="team_id"/>
+                             <widget name="pie_chart" title="Sales Teams" attrs="{'groupby': 'team_id'}"/>
+                        </group>
+                        <group col="1">
+                            <widget name="pie_chart" title="Sales Person" attrs="{'groupby': 'user_id'}"/>
+                        </group>
+                    </group>
+                    <view type="pivot" ref="mm_sales_target.sales_target_report_view_pivot"/>
+                </dashboard>
+            </field>
+        </record>
+
+    </data>
+
+
+</odoo>

@@ -1,0 +1,3 @@
+"id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
+access_attach_invoice_to_landed_costs_wizard,attach.invoice.to.landed.costs.wizard.record,model_attach_invoice_to_landed_costs_wizard,,1,1,1,1
+access_product_product_withlandedcost,product.product.withlandedcost,model_product_product_withlandedcost,,1,1,1,1

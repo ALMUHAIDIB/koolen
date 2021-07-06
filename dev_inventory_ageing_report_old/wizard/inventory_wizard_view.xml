@@ -1,0 +1,80 @@
+<odoo>
+    <data>
+        <record id="dev_inventory_wizard_view" model="ir.ui.view">
+            <field name="name">Stock Ageing Report</field>
+            <field name="model">inventory.age.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Report Options">
+                    <separator string="Stock Ageing Report"/>
+                    <group>
+                        <field name="company_id" readonly="1" widget="selection" required="1"/>
+                        <group>
+                            <field name="product_category_ids" widget="many2many_tags" required="1"
+                                   attrs="{'invisible': [('get_all_categories', '=', True)]}"/>
+                            <field name="get_all_categories"/>
+                        </group>
+                        <group>
+                            <field name="product_id"
+                                   domain="[('company_id','=',company_id),('categ_id','in',product_category_ids)]"/>
+                        </group>
+                        <group>
+                            <field name="period_length" required="1"/>
+                            <field name="date_from" required="1"/>
+                        </group>
+                    </group>
+                    <footer>
+                        <!--                    <button name="check_report" string="Print" type="object" class="oe_highlight"/>-->
+                        <!--                    or-->
+                        <button icon="fa-print" string="Print Excel Report" name="inventory_age_history_excel"
+                                type="object"
+                                class="oe_highlight"/>
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_inventory_wizard_view" model="ir.actions.act_window">
+            <field name="name">Stock Ageing Report</field>
+            <field name="res_model">inventory.age.wizard</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="dev_inventory_wizard_view"/>
+            <field name="context">{}</field>
+            <field name="target">new</field>
+        </record>
+
+        <record id="view_inventory_age_dow" model="ir.ui.view">
+            <field name="name">account.history.form</field>
+            <field name="model">inventory.age.dow</field>
+            <field name="arch" type="xml">
+                <form string="Excel Report file" version="7.0">
+                    <group>
+                        <field name="excel_file" readonly="1" filename="file_name"/>
+                        <field name="file_name" invisible="1"/>
+                    </group>
+                    <footer>
+                        <button string="Cancel" class="oe_link" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_age_excel_form" model="ir.actions.act_window">
+            <field name="name">Stock Ageing Excel Report</field>
+            <field name="view_id" ref="view_inventory_age_dow"/>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_mode">form</field>
+            <field name="res_model">inventory.age.dow</field>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem
+                  name="Stock Ageing Report"
+                  action="action_inventory_wizard_view"
+                  id="menu_dev_inventory_wizard"
+                  parent="stock.menu_warehouse_report"/>
+
+    </data>
+</odoo>

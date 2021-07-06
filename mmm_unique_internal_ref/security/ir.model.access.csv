@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_mmm_unique_internal_ref_mmm_unique_internal_ref,mmm_unique_internal_ref.mmm_unique_internal_ref,model_mmm_unique_internal_ref_mmm_unique_internal_ref,,1,0,0,0

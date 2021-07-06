@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="invoice_track_tree">
+            <field name="name">Invoices Track</field>
+            <field name="model">invoice.track</field>
+            <field name="arch" type="xml">
+                <tree string="Invoices Trace">
+                    <field name="invoice_id"/>
+                    <field name="invoice_date"/>
+                    <field name="customer_id"/>
+                    <field name="customer_address"/>
+                    <field name="branch_id"/>
+                    <field name="branch_address"/>
+                    <field name="salesperson_id"/>
+                    <field name="driver_name"/>
+                    <field name="car_id"/>
+                    <field name="amount_total"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="invoice_track_form">
+            <field name="name">Invoices Track</field>
+            <field name="model">invoice.track</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <button name="convert_to_receive" string="Receive Invoice" type="object" states="draft"/>
+                        <button name="convert_to_shipped" string="Shipped" type="object" states="receive"/>
+                        <button name="convert_to_delivered" string="Delivered To Customer" type="object" states="shipped"/>
+                        <button name="convert_to_warehouse_receipt" string="Warehouse Receipt" type="object" states="delivered"/>
+                        <button name="convert_to_account_receipt" string="Accounting Receipt" type="object" states="warehouse_receipt"/>
+                        <button name="convert_to_cancelled" groups="mmm_invoice_track.cancel_invoices_track_group" string="cancelled" type="object" attrs="{'invisible':[ ('state', 'in', ('draft','cancelled'))]}"/>
+                        <button name="back_to_draft" string="Back To Draft" type="object" states="cancelled"/>
+                        <field name="state" widget="statusbar"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="invoice_id"/>
+                                <field name="invoice_date"/>
+                                <field name="customer_id"/>
+                                <field name="customer_address"/>
+                                <field name="branch_id"/>
+                                <field name="branch_address"/>
+
+                            </group>
+                            <group>
+                                <field name="salesperson_id"/>
+                                <field name="driver_name" attrs="{'required': [('state', 'in', ['shipped','delivered','warehouse_receipt','account_receipt'])]}"/>
+                                <field name="car_id" attrs="{'required': [('state', 'in', ['shipped','delivered','warehouse_receipt','account_receipt'])]}"/>
+                            </group>
+
+                        </group>
+                        <group>
+                            <group>
+                                <field name="data_receive" attrs="{'required': [('state', 'in', ['receive','shipped','delivered','warehouse_receipt','account_receipt'])] , 'invisible': [('state', 'in', ['draft','cancelled'])]}" />
+                                <field name="note_receive" attrs="{'required': [('state', 'in', ['receive','shipped','delivered','warehouse_receipt','account_receipt'])] , 'invisible': [('state', 'in', ['draft','cancelled'])]}" />
+                            </group>
+                            <group>
+                                <field name="data_shipped" attrs="{'required': [('state', 'in', ['shipped','delivered','warehouse_receipt','account_receipt'])] , 'invisible': [('state', 'in', ['draft','cancelled','receive'])]}"/>
+                                <field name="note_shipped" attrs="{'required': [('state', 'in', ['shipped','delivered','warehouse_receipt','account_receipt'])] , 'invisible': [('state', 'in', ['draft','cancelled','receive'])]}"/>
+                            </group>
+                            <group>
+                                <field name="data_delivered" attrs="{'required': [('state', 'in', ['delivered','warehouse_receipt','account_receipt'])] , 'invisible': [('state', 'in', ['draft','cancelled','receive','shipped'])]}"/>
+                                <field name="note_delivered" attrs="{'required': [('state', 'in', ['delivered','warehouse_receipt','account_receipt'])] , 'invisible': [('state', 'in', ['draft','cancelled','receive','shipped'])]}"/>
+                            </group>
+                            <group>
+                                <field name="data_warehouse_receipt" attrs="{'required': [('state', 'in', ['warehouse_receipt','account_receipt'])] , 'invisible': [('state', 'in', ['draft','cancelled','receive','shipped','delivered'])]}"/>
+                                <field name="note_warehouse_receipt" attrs="{'required': [('state', 'in', ['warehouse_receipt','account_receipt'])] , 'invisible': [('state', 'in', ['draft','cancelled','receive','shipped','delivered'])]}"/>
+                            </group>
+                            <group>
+                                <field name="data_account_receipt" attrs="{'required': [('state', '=', 'account_receipt')] , 'invisible': [('state', 'in', ['draft','cancelled','receive','shipped','delivered','warehouse_receipt'])]}"/>
+                                <field name="note_account_receipt" attrs="{'required': [('state', '=', 'account_receipt')] , 'invisible': [('state', 'in', ['draft','cancelled','receive','shipped','delivered','warehouse_receipt'])]}"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- actions opening views on models -->
+        <record model="ir.actions.act_window" id="invoice_track_act">
+            <field name="name">Invoices Track</field>
+            <field name="res_model">invoice.track</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem name="Invoices Track" id="invoice_track_menu" parent="sale.sale_menu_root"
+              action="invoice_track_act" sequence="3"/>
+    </data>
+</odoo>

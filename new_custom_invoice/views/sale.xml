@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="sale_order_inherit_form_view_sku" model="ir.ui.view">
+            <field name="name">partner.sale.order</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//notebook/page/field[@name='order_line']/tree/field[@name='product_id']" position="after">
+                    <field name="partner_sku"/>
+                    <field name="barcode"/>
+                </xpath>
+                <xpath expr="//field[@name='partner_id']" position="before">
+                    <field name="parent_partner_id" widget="res_partner_many2one"
+                           attrs="{'readonly':[('state', 'not in', ['draft', 'sent'])]}"
+                           domain="[('customer_rank','>',0),('parent_id', '=', False)]"/>
+                </xpath>
+                <xpath expr="//field[@name='partner_id']" position="attributes">
+                    <attribute name="string">Branch</attribute>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

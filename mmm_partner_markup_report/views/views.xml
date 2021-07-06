@@ -1,0 +1,92 @@
+<odoo>
+    <data>
+        <record id="view_partner_tree" model="ir.ui.view">
+            <field name="name">view.markup.tree</field>
+            <field name="model">res.partner</field>
+            <field name="arch" type="xml">
+                <tree string="Partner Markup">
+                    <field name="name"/>
+                    <field name="ref"/>
+                    <field name="gross_sales"/>
+                    <field name="return_sales"/>
+                    <field name="discount_sales"/>
+                    <field name="net_sales"/>
+                    <field name="cogs_sales"/>
+                    <field name="markup"/>
+                    <field name="margin"/>
+                </tree>
+            </field>
+        </record>
+        <record id="view_partner_pivot" model="ir.ui.view">
+            <field name="name">partner.markup.pivot</field>
+            <field name="model">res.partner</field>
+            <field name="arch" type="xml">
+                <pivot>
+                    <field name="name" type="row"/>
+                    <field name="gross_sales" type="measure"/>
+                    <field name="return_sales" type="measure"/>
+                    <field name="discount_sales" type="measure"/>
+                    <field name="net_sales" type="measure"/>
+                    <field name="cogs_sales" type="measure"/>
+                    <field name="markup" type="measure"/>
+                    <field name="margin" type="measure"/>
+                </pivot>
+            </field>
+        </record>
+
+        <record id="view_inherit_account_journal_form" model="ir.ui.view">
+            <field name="name">view.inherit.account.markup.form</field>
+            <field name="model">account.journal</field>
+            <field name="inherit_id" ref="account.view_account_journal_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='currency_id']" position="after">
+                    <field name="markup"/>
+                </xpath>
+            </field>
+        </record>
+        <record id="view_inherit_account_account_form" model="ir.ui.view">
+            <field name="name">view.inherit.account.form</field>
+            <field name="model">account.account</field>
+            <field name="inherit_id" ref="account.view_account_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='deprecated']" position="after">
+                    <field name="is_gsale"/>
+                    <field name="is_return"/>
+                    <field name="is_discount"/>
+                    <field name="is_cogs"/>
+                </xpath>
+            </field>
+        </record>
+        <record id="view_partner_markup_form" model="ir.ui.view">
+            <field name="name">view.partner.markup.form</field>
+            <field name="model">partner.markup.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Partner Markup">
+                    <sheet>
+                        <group>
+                            <field name="partner_ids" widget="many2many_tags"/>
+                            <field name="date_from"/>
+                            <field name="date_to"/>
+                        </group>
+                    </sheet>
+                    <footer>
+                        <button string="Generate Lines" name="generate_move_line" type="object" class="btn-primary"/>
+                        <button string="Cancel" class="btn-default" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+        <record id="action_partner_markup_report" model="ir.actions.act_window">
+            <field name="name">Partner Markup</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">partner.markup.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+        <menuitem id="menu_partner_markup_view"
+                  name="Partner MarkUp"
+                  parent="account.menu_finance_reports"
+                  action="action_partner_markup_report"
+                  sequence="10000000"/>
+    </data>
+</odoo>

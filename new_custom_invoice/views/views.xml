@@ -1,0 +1,194 @@
+<odoo>
+    <data>
+        <template id="custom_invoice_template">
+            <t t-foreach="docs" t-as="a">
+                <div class="header">
+                    <br/>
+                    <span style="font-size: 18;position:absolute;margin-top:180px;margin-left:630px;">
+                    </span>
+<!--                    <span style="font-size: 18;position:absolute;margin-top:195px;margin-left:70px;"-->
+<!--                          t-field="a.date_invoice"/>-->
+                    <t t-if="a.sequence_number">
+                        <span style="font-size: 18;position:absolute;margin-top:195px;margin-left:420px;"
+                              t-field="a.sequence_number"/>
+                    </t>
+                    <!--added by omara-->
+                    <t t-if="a.sale_picking_ids">
+                        <span style="font-size: 18;position:absolute;margin-top:140px;margin-left:420px;"
+                              t-esc="a.sale_picking_to_text(a.sale_picking_ids)"/>
+                    </t>
+                    <!--added by omara-->
+                    <t t-if="not a.sequence_number">
+                        <span style="font-size: 18;position:absolute;margin-top:202px;margin-left:450px;">Draft
+                            Invoice
+                        </span>
+                    </t>
+                    <div style="font-size: 18;position:absolute;left:3%;white-space: nowrap;margin-top:268px;margin-left:500px;">
+                        <span t-esc="a.partner_id.street"/>
+                        <span t-field="a.partner_id.street2"/>
+                    </div>
+                    <span style="font-size: 18;position:absolute;left:3%;margin-top:270px;margin:left:10px;"
+                          t-esc="str(a.partner_limit_days) + '  Days'"/>
+                    <!--<span style="font-size: 18;position:absolute;left:3%;margin-top:270;margin-left:40px;">-->
+                    <!--Days-->
+                    <!--</span>-->
+                    <!--customer vat no-->
+                    <span style="font-size: 14;position:absolute;margin-top:275px;margin-left:160px;"
+                          t-field="a.parent_partner_id.vat"/>
+                    <span>15%</span>
+                    <span style="font-size: 14;position:absolute;margin-top:275px;margin-left:370px;" t-field="a.name"/>
+                    <!--<t t-foreach="a.sale_picking_ids" t-as="t">-->
+                    <!--<span style="font-size: 14;position:absolute;margin-top:275px;margin-left:270px;" t-field="t.name"/>-->
+                    <!--</t>-->
+                    <span style="font-size: 18;position:absolute;white-space: nowrap;margin-top:310px;margin-left:200px;"
+                          t-field="a.parent_partner_id"/>
+                    <span style="font-size: 18;position:absolute;white-space: nowrap;margin-top:340px;margin-left:200px;"
+                          t-field="a.partner_id">
+                    </span>
+                    <span style="font-size: 18;position:absolute;margin-top:370px;margin-left:130px;"/><!--CR No-->
+                    <span style="font-size: 18;position:absolute;margin-top:370px;margin-left:860px;"/><!--Po No-->
+                </div>
+            </t>
+            <div class="footer">
+                <t t-foreach="docs" t-as="a">
+                    <t t-set="value_discount" t-value="0"/>
+                    <t t-foreach="a.invoice_line_ids" t-as="x">
+                        <t t-set="value_discount" t-value="value_discount+(x.quantity*x.price_unit*x.discount/100)"/>
+                    </t>
+                    <div style="margin-right:30">
+                        <div style="position:absolute;left:88%;font-size: 18;margin-top:-6px;"> <!-- -5 -  +3 all-->
+                            <span style="font-size: 18;" t-esc=" '%.2f'% float(a.amount_untaxed + value_discount)"/>
+                        </div>
+                        <div style="position:absolute;left:88%;margin-top:13px;">
+                            <span style="font-size: 18;" t-esc="'%.2f'%float(value_discount)"/>
+                        </div>
+                        <div style="position:absolute;left:88%;margin-top:48px">
+                            <span style="font-size: 18;" t-esc="'%.2f'%float(a.amount_untaxed)"/>
+                        </div>
+                        <!--mara added-->
+                        <div style="position:absolute;left:69%;margin-top:77px">
+                            <span style="font-size: 18;">15%</span>
+                        </div>
+                        <!--mara added-->
+                        <div style="position:absolute;left:88%;margin-top:78px">
+                            <span style="font-size: 18;" t-esc="'%.2f'%float(a.amount_tax)"/>
+                        </div>
+                        <div style="position:absolute;left:88%;margin-top:113px">
+
+                            <span style="font-size: 18;" t-esc="'%.2f'%float(a.amount_total)"/>
+                        </div>
+                        <!--position:absolute;left:77%;-->
+                        <div style="page-break-after: always;position:absolute;left:77%;white-space: nowrap;margin-top:183px;margin-right:38px">
+                            <span style="font-size: 14;" t-field="a.user_id"/>
+                        </div>
+                    </div>
+                    <div class="col-xs-2 pull-left" style="margin-top:75px;position:absolute;left:5%">
+                        <small>
+                            <span>Page</span>
+                            <span class="page"/>
+                            of
+                            <span class="topage"/>
+                        </small>
+                    </div>
+                    <div style="page-break-after: always;position:absolute;left:5%;white-space: nowrap;margin-top:110px">
+                        <!--<span style="font-size: 14;" t-esc="a.amount_to_text(a.amount_total, 'Riyal')"/>-->
+                        <!--<span style="font-size: 14;" t-esc="a.amount_to_text(a.amount_total)"/>--> <!--was the last one working and stopped it,omara-->
+                    </div>
+                </t>
+            </div>
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="a">
+                    <div class="page">
+
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <table style="width:100%;">
+                                    <t t-foreach="a.invoice_line_ids" t-as="i">
+                                        <div class="col-xs-6" style="position:absolute;page-break-inside:avoid">
+                                            <tr style="page-break-inside: avoid;">
+                                                <td style="page-break-inside: avoid;text-align: center;width:163px;page-break-inside: avoid;">
+                                                    <t t-if="i.partner_sku">
+                                                        <div style="page-break-inside: avoid;position:relative; right:17;">
+                                                            <span style="font-size: 14;" t-field="i.partner_sku"/>
+                                                        </div>
+                                                    </t>
+                                                    <div style="page-break-inside: avoid;position:relative; right:10;"> <!--22-->
+                                                        <span style="font-size: 14;" t-field="i.product_id.barcode"/>
+                                                    </div>
+                                                </td>
+                                                <td style="text-align: center;width:100px; page-break-inside: avoid;">
+                                                    <div style="page-break-inside: avoid;position:relative; right: 12;"> <!--22-->
+                                                        <span style="font-size: 16;"
+                                                              t-field="i.product_id.default_code"/>
+                                                    </div>
+                                                </td>
+                                                <td style="text-align: center;width:320px;page-break-inside: avoid;">
+                                                    <div style="position:relative;right:12;width:310px;">
+                                                        <span style="font-size: 18;" t-field="i.product_id.name"/>
+                                                        <br/>
+                                                        <span style="font-size: 18;"
+                                                              t-field="i.product_id.product_tmpl_id.ar_name"/>
+                                                    </div>
+                                                </td>
+                                                <td style="width:50px;page-break-inside: avoid;">
+                                                    <div style="page-break-inside: avoid;position:relative;right:12">
+                                                        <span style="position:relative; font-size: 18;"
+                                                              t-esc="'%.2f'%float(i.quantity)"/>
+                                                    </div>
+                                                </td>
+
+                                                <td style="text-align: center;width:100px;page-break-inside: avoid;">
+                                                    <span style="position:relative; right: 22; width:50px;font-size: 18;"
+                                                          t-field="i.product_uom_id"/>
+                                                </td>
+                                                <td style="text-align: center;width:50px;page-break-inside: avoid;">
+                                                    <span style="position:relative; right: 17; width:50px; font-size: 18;"
+                                                          t-esc="'%.2f'%float(i.price_unit)"/>
+                                                </td>
+                                                <td style="text-align: center;width:100px;page-break-inside: avoid;">
+                                                    <span style="position:relative; width:100px;font-size: 18;right:12"
+                                                          t-esc="'%.2f'%float(i.discount)"/>
+                                                </td>
+                                                <td style="text-align: center;width:100px;page-break-inside: avoid;">
+                                                    <span style="position:relative;  width:100px;font-size: 18;right:17"
+                                                          t-esc="'%.2f'%float(i.price_subtotal)"/>
+                                                </td>
+                                            </tr>
+                                        </div>
+                                    </t>
+                                </table>
+
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </t>
+            <!--TODO MM1 Invoice paper Format A4 And printed => 'Letter invoice && check to fit to page'-->
+        </template>
+        <record id="paperformat_custom_invoice" model="report.paperformat">
+            <field name="name">Custom Invoice</field>
+            <field name="default" eval="True"/>
+            <field name="format">A4</field>
+            <field name="page_height">0</field>
+            <field name="page_width">0</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">84</field>
+            <field name="margin_bottom">60</field>
+            <field name="margin_left">0</field>
+            <field name="margin_right">4</field>
+            <field name="header_line" eval="False"/>
+            <field name="header_spacing">110</field>
+            <field name="dpi">90</field>
+        </record>
+        <report
+                id="new_custom_invoice_template"
+                model="account.move"
+                string="Custom Invoice"
+                report_type="qweb-pdf"
+                name="new_custom_invoice.custom_invoice_template"
+                file="new_custom_invoice.custom_invoice_template"
+                menu="True"
+                paperformat="new_custom_invoice.paperformat_custom_invoice"
+        />
+    </data>
+</odoo>

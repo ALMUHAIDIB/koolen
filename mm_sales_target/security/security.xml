@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!--Partners Category -->
+        <record id="sales_target_security_category" model="ir.module.category">
+            <field name="name">Sales Target</field>
+        </record>
+
+        <record id="sales_target_user_group" model="res.groups">
+            <field name="name">User</field>
+            <field name="category_id" ref="mm_sales_target.sales_target_security_category"/>
+        </record>
+
+         <record id="sales_target_leader_group" model="res.groups">
+            <field name="name">Team Leader</field>
+            <field name="category_id" ref="mm_sales_target.sales_target_security_category"/>
+            <field name="implied_ids" eval="[(4, ref('mm_sales_target.sales_target_user_group'))]"/>
+        </record>
+
+        <record id="sales_target_manager_group" model="res.groups">
+            <field name="name">Manager</field>
+            <field name="category_id" ref="mm_sales_target.sales_target_security_category"/>
+            <field name="implied_ids" eval="[(4, ref('mm_sales_target.sales_target_leader_group'))]"/>
+        </record>
+    </data>
+</odoo>

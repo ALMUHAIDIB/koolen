@@ -1,0 +1,104 @@
+<odoo>
+    <data>
+        <template id="report_stockageing">
+            <t t-call="web.html_container">
+                <!--<t t-call="report.internal_layout">-->
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <br/>
+                        <h3 align="center">Stock Ageing Report</h3>
+                        <div class="row mt32">
+                            <div class="col-xs-3">
+                                <strong>Company</strong>
+                                <p t-esc="data['form']['company_id'][1]"/>
+                            </div>
+                            <!--                        <div class="col-xs-3">-->
+                            <!--                            <strong>Warehouse</strong>-->
+                            <!--                            <p t-esc="data['form']['warehouse_id'][1]"/>-->
+                            <!--                        </div>-->
+                            <div class="col-xs-3">
+                                <strong>Period Length (days)</strong>
+                                <p t-esc="data['form']['period_length']"/>
+                            </div>
+                            <div class="col-xs-3">
+                                <strong>Start Date:</strong>
+                                <p t-esc="data['form']['date_from']"/>
+                            </div>
+                            <div class="col-xs-3">
+                                <strong>Location</strong>
+                                <p t-esc="get_location_name"/>
+                            </div>
+                            <div class="col-xs-3">
+                                <strong>Product Category</strong>
+                                <p t-esc="data['form']['product_category_id'][1]"/>
+                            </div>
+                        </div>
+                        <table class="table table-condensed">
+                            <thead>
+                                <tr>
+                                    <th>Products</th>
+                                    <th class="text-center">
+                                        <span t-esc="data['form']['6']['name']"/>
+                                    </th>
+                                    <th class="text-center">
+                                        <span t-esc="data['form']['5']['name']"/>
+                                    </th>
+                                    <th class="text-center">
+                                        <span t-esc="data['form']['4']['name']"/>
+                                    </th>
+                                    <th class="text-center">
+                                        <span t-esc="data['form']['3']['name']"/>
+                                    </th>
+                                    <th class="text-center">
+                                        <span t-esc="data['form']['2']['name']"/>
+                                    </th>
+                                    <th class="text-center">
+                                        <span t-esc="data['form']['1']['name']"/>
+                                    </th>
+                                    <th class="text-center">
+                                        <span t-esc="data['form']['0']['name']"/>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr t-foreach="get_lines" t-as="product">
+                                    <td t-if="product.get('onhand_qty', 0) and product.get('onhand_qty', 0) &gt; 0 and (product['0'] &gt; 0 )">
+                                        <span t-esc="product['pname']"/>
+                                    </td>
+                                    <td t-if="product.get('onhand_qty', 0) != 0 and product.get('onhand_qty', 0) &gt; 0 and (product['0'] &gt; 0 or product['1'] &gt; 0 or product['2'] &gt; 0 or product['3'] &gt; 0 or product['4'] &gt; 0 or product['5'] &gt; 0 or product['6'] &gt; 0)"
+                                        class="text-center">
+                                        <span t-esc="product['6']"/>
+                                    </td>
+                                    <td t-if="product.get('onhand_qty', 0) != 0 and product.get('onhand_qty', 0) &gt; 0 and (product['0'] &gt; 0 or product['1'] &gt; 0 or product['2'] &gt; 0 or product['3'] &gt; 0 or product['4'] &gt; 0 or product['5'] &gt; 0 or product['6'] &gt; 0)"
+                                        class="text-center">
+                                        <span t-esc="product['5']"/>
+                                    </td>
+                                    <td t-if="product.get('onhand_qty', 0) != 0 and product.get('onhand_qty', 0) &gt; 0 and (product['0'] &gt; 0 or product['1'] &gt; 0 or product['2'] &gt; 0 or product['3'] &gt; 0 or product['4'] &gt; 0 or product['5'] &gt; 0 or product['6'] &gt; 0)"
+                                        class="text-center">
+                                        <span t-esc="product['4']"/>
+                                    </td>
+                                    <td t-if="product.get('onhand_qty', 0) != 0 and product.get('onhand_qty', 0) &gt; 0 and (product['0'] &gt; 0 or product['1'] &gt; 0 or product['2'] &gt; 0 or product['3'] &gt; 0 or product['4'] &gt; 0) or product['5'] &gt; 0 or product['6'] &gt; 0"
+                                        class="text-center">
+                                        <span t-esc="product['3']"/>
+                                    </td>
+                                    <td t-if="product.get('onhand_qty', 0) != 0 and product.get('onhand_qty', 0) &gt; 0 and (product['0'] &gt; 0 or product['1'] &gt; 0 or product['2'] &gt; 0 or product['3'] &gt; 0 or product['4'] &gt; 0 or product['5'] &gt; 0 or product['6'] &gt; 0)"
+                                        class="text-center">
+                                        <span t-esc="product['2']"/>
+                                    </td>
+                                    <td t-if="product.get('onhand_qty', 0) != 0 and product.get('onhand_qty', 0) &gt; 0 and (product['0'] &gt; 0 or product['1'] &gt; 0 or product['2'] &gt; 0 or product['3'] &gt; 0 or product['4'] &gt; 0 or product['5'] &gt; 0 or product['6'] &gt; 0)"
+                                        class="text-center">
+                                        <span t-esc="product['1']"/>
+                                    </td>
+                                    <td t-if="product.get('onhand_qty', 0) != 0 and product.get('onhand_qty', 0) &gt; 0 and (product['0'] &gt; 0 or product['1'] &gt; 0 or product['2'] &gt; 0 or product['3'] &gt; 0 or product['4'] &gt; 0 or product['5'] &gt; 0 or product['6'] &gt; 0)"
+                                        class="text-center">
+                                        <span t-esc="product['0']"/>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>

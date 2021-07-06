@@ -1,0 +1,51 @@
+<odoo>
+    <data>
+        <!-- ........................... to add new menu to exixtence menuitem........................................................................................-->
+        <!--         tree view-->
+        <record id="price_list_items_tree_view" model="ir.ui.view">
+            <field name="name">price list items tree view</field>
+            <field name="model">product.pricelist.item</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="pricelist_id"/>
+                    <field name="name"/>
+                    <field name="min_quantity"/>
+                    <field name="date_start"/>
+                    <field name="date_end"/>
+                    <field name="price"/>
+                </tree>
+            </field>
+        </record>
+
+        <!--         form view-->
+        <record id="price_list_items_form_view" model="ir.ui.view">
+            <field name="name">price list items form view</field>
+            <field name="model">product.pricelist.item</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- actions -->
+        <!--     ALTERNATIVE PRODUCT action-->
+        <record id="price_list_items_action" model="ir.actions.act_window">
+            <field name="name">Pricelist Items</field>
+            <field name="res_model">product.pricelist.item</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <!-- menu categories -->
+        <menuitem id="price_list_items"
+                  name="Pricelist Items"
+                  parent="sale.product_menu_catalog"
+                  action="price_list_items_action"
+                  sequence="22"
+        />
+
+    </data>
+</odoo>

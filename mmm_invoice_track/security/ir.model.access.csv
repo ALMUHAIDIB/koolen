@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_mmm_invoice_track_mmm_invoice_track,mmm_invoice_track.mmm_invoice_track,model_invoice_track,,1,1,1,0
+access_mmm_invoice_track_mmm_invoice_track_delete,mmm_invoice_track.mmm_invoice_track,model_invoice_track,mmm_invoice_track.delete_invoices_track_group,1,1,1,1
+
+access_car_model,mmm_car_model,model_car_model,,1,1,1,1

@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_sales_target_user,mm_sales_target_user,model_sales_target,mm_sales_target.sales_target_user_group,1,0,0,0
+access_sales_target,mm_sales_target,model_sales_target,mm_sales_target.sales_target_manager_group,1,1,1,1

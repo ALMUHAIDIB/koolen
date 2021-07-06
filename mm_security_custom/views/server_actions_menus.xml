@@ -1,0 +1,23 @@
+<odoo>
+    <data>
+
+        <record id="action_server_module_account_invoices" model="ir.actions.server">
+            <field name="name">Invoices</field>
+            <field name="type">ir.actions.server</field>
+            <field name="model_id" ref="account.model_account_move" />
+            <field name="binding_model_id" ref="account.model_account_move" />
+            <field name="state">code</field>
+            <field name="code">action = env.get('account.move').return_invoices_with_domain()</field>
+        </record>
+
+         <record id="action_server_module_account_credits" model="ir.actions.server">
+            <field name="name">Credit Notes</field>
+            <field name="type">ir.actions.server</field>
+            <field name="model_id" ref="account.model_account_move" />
+            <field name="binding_model_id" ref="account.model_account_move" />
+            <field name="state">code</field>
+            <field name="code">action = env.get('account.move').return_credit_with_domain()</field>
+        </record>
+
+    </data>
+</odoo>

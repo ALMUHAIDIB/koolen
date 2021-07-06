@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_hr_holidays_employee_request,hr.holidays.employee.request,hr_holidays.model_hr_leave,group_hr_holidays_employee,1,0,0,0
+access_account_allow_canceling,account.invoice.cancel,account.model_account_invoice,group_account_canceler,1,1,1,0
+

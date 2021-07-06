@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="product_template_form_view_inherit" model="ir.ui.view">
+            <field name="name">product.template.ar_name</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_only_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//h1" position="after">
+                    <div class="oe_title">
+                        <h1>
+                            <label for="name" class="oe_edit_only" string="Arabic Name"/>
+                            <field name="ar_name"/>
+                        </h1>
+                    </div>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

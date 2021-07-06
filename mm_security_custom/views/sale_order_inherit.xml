@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<odoo>
+    <data>
+        <record id="sale_order_inherit_form_view" model="ir.ui.view">
+            <field name="name">sale.order</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='user_id']" position="replace">
+                    <field name="is_has_group_sale_person" invisible="1" />
+                    <field name="user_id" attrs="{'readonly': [('is_has_group_sale_person','=', False)]}" force_save="1"/>
+
+                </xpath>
+                <xpath expr="//field[@name='order_line']//tree//field[@name='price_unit']" position="after">
+                    <field name="is_has_group_price" invisible="1" />
+
+                </xpath>
+                <xpath expr="//field[@name='order_line']/tree/field[@name='price_unit']" position="attributes">
+					<attribute name="attrs">{'readonly': [('is_has_group_price','=', False)]}</attribute>
+				</xpath>
+                <xpath expr="//field[@name='pricelist_id']" position="attributes">
+					<attribute name="options">{'no_create': True}</attribute>
+				</xpath>
+            </field>
+        </record>
+
+        <record id="crm_team_inherit_form_view" model="ir.ui.view">
+            <field name="name">crm.team</field>
+            <field name="model">crm.team</field>
+            <field name="inherit_id" ref="sales_team.crm_team_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='currency_id']" position="after">
+                    <field name="users" widget="many2many_tags" invisible="1" />
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>
