@@ -1,0 +1,135 @@
+
+.t_dial input[type="search"] {
+    width: 200px;
+    font-size: 16px;
+    margin-top: 6px;
+    /* -webkit-transistion: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out; */
+    display: block;
+}
+.conn {
+	// width: 45px;
+	padding: 13px;
+	background-color: #a30303;
+}
+
+.drp-menu{
+    background-color: #868686 !important;
+    padding: 0px !important;
+}
+
+.hidden {
+    display: none !important;
+    opacity: 0 !important;
+}
+
+.muted{
+    color: grey !important;
+}
+.dropdown-item{
+    font-size: 14px;
+}
+
+.sip_error{
+    background: red;
+    color: white;
+    width: 170px;
+    text-align: center;
+    padding: 6px;
+}
+
+.animatedBlink{
+    display: block;
+    // -webkit-animation: fadeInUp .3s ease-out;
+    // animation: fadeInUp .3s ease-out;
+    margin: 0;
+    width: 200px;
+    text-align: center;
+    padding: 6px;
+    color: white;
+    background-color: green !important;
+    // animation:  blink 1.5s linear infinite;
+}
+
+a.o_field_phone {
+    color: green;
+}
+
+a.o_field_phone:hover{
+    cursor: pointer;
+
+}
+
+
+@keyframes blink{
+    0%{opacity: 0;}
+    50%{opacity: .5;}
+    100%{opacity: 1;}
+}
+
+
+@-webkit-keyframes fadeInUp{
+    0% {
+        opacity: 0;
+        transform: translateY(-100%);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp{
+    0%{
+        opacity: 0;
+        transform: translateY(-100%);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideIn {
+  0% {
+    transform: translateY(1rem);
+    opacity: 0;
+  }
+  100% {
+    transform:translateY(0rem);
+    opacity: 1;
+  }
+  0% {
+    transform: translateY(1rem);
+    opacity: 0;
+  }
+}
+
+@-webkit-keyframes slideIn {
+  0% {
+    -webkit-transform: transform;
+    -webkit-opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateY(0);
+    -webkit-opacity: 1;
+  }
+  0% {
+    -webkit-transform: translateY(1rem);
+    -webkit-opacity: 0;
+  }
+}
+
+.slideIn {
+    -webkit-animation-name: slideIn;
+    animation-name: slideIn;
+}
+
+@media (min-width: 992px) {
+  .animate {
+    animation-duration: 0.3s;
+    -webkit-animation-duration: 0.3s;
+    animation-fill-mode: both;
+    -webkit-animation-fill-mode: both;
+  }
+}
