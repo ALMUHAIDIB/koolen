@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data noupdate="0">
+        <record id="call_history_security" model="ir.module.category">
+            <field name="name">Call History</field>
+        </record>
+
+        <record id="group_user" model="res.groups">
+            <field name="name">User</field>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+            <field name="category_id" ref="avaya_voip.call_history_security"/>
+        </record>
+        
+        <record id="group_manager" model="res.groups">
+            <field name="name">Manager</field>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+            <field name="category_id" ref="avaya_voip.call_history_security"/>
+        </record>
+    </data>
+</odoo>
