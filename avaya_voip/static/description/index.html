@@ -1,0 +1,221 @@
+<section class="oe_container">
+    <div class="oe_row oe_spaced">
+        <h2 class="oe_slogan">Avaya WebRTC Integration</h2>
+        <h3 class="oe_slogan">
+            Integrate your Avaya and make inbound/outbound Call
+        </h3>
+        <div class="oe_span6">
+            <img src="dialplan.png" class="oe_picture oe_screenshot">
+            <img src="ongoingcall.png" class="oe_picture oe_screenshot">
+        </div>
+        <div class="oe_span6">
+            <p class="oe_mt32">
+                Easy to use Dial & Make Calls.<br/>
+            </p>
+            <p class="oe_mt32">
+                <h3>Telephony API</h3>
+                <ul>
+                    <li>Make Call</li>
+                    <li>Reject Call</li>
+                    <li>Cancel Call</li>
+                    <li>Mute</li>
+                    <li>Un-Mute</li>
+                    <li>Hold</li>
+                    <li>Un-Hold</li>
+                    <li>Transfer Call</li>
+                </ul>
+            </p>
+        </div>
+    </div>
+</section>
+
+<section class="oe_container oe_dark">
+    <div class="oe_row">
+        <h2 class="oe_slogan">Pop-up Incoming Call</h2>
+        <div class="oe_span6">
+            <p class="oe_mt32 float-right">
+                Integrated in Contacts Module<br/>
+                It will search caller number and show the caller name.
+            </p>
+        </div>
+        <div class="oe_span6">
+            <img src="incomingCall.png" class="oe_picture oe_screenshot">
+        </div>
+    </div>
+
+</section>
+
+
+<section class="oe_container oe_dark">
+    <div class="oe_row">
+        <h2 class="oe_slogan">Show Contacts Forms</h2>
+        <div class="oe_span12">
+            <img style="display: block;margin-left: auto;margin-right: auto; height: 800px;" src="save_contacts.gif" class="oe_picture oe_screenshot">
+        </div>
+    </div>
+</section>
+
+<section class="oe_container oe_dark">
+    <div class="oe_row">
+        <h2 class="oe_slogan">Allow click to call</h2>
+        <div class="oe_span12">
+            <img style="display: block;margin-left: auto;margin-right: auto; height: 800px;" src="click_to_call.gif" class="oe_picture oe_screenshot">
+        </div>
+    </div>
+</section>
+
+<section class="oe_container oe_dark">
+    <div class="oe_row">
+        <div class="oe_span12">
+            <h4 class="oe_slogan">Setup & Requirements</h4>
+            <div class="oe_row">
+                <div class="oe_span6">
+                    <p class="oe_mt32">
+
+                        <ul>
+                            <li>WebRTC required SSL Certificate on domain name.</li>
+                            <li>Support Only Chrome Browser</li>
+                            <li>Settings</li>  
+                        </ul>  
+                        <img src="avaya_settings.png" class="oe_picture oe_screenshot">
+                    </p>
+                </div>
+                <div class="oe_span6" style="margin-top: 100px;">
+                    <p class="oe_mt32">
+
+                        <ul>
+                            <li>Avaya Server: Avaya IP Address</li>
+                            <li>Port: 9443(default) not editable</li>
+                            <li>Allow Stun: Stun Server(Optional)</li>
+                            <li>Allow Turn: Turn Server(Optional)</li>
+                        </ul>
+                    </p>
+                </div>
+            </div>
+            <hr>
+            <div class="oe_row">
+                <div class="oe_span6">
+                    <p class="oe_mt32">
+
+                        <ul>
+                            <li>User Settings -> Preference</li>
+                        </ul>
+                        <img src="user_settings.png" class="oe_picture oe_screenshot">
+                    </p>
+                </div>
+                <div class="oe_span6">
+                    <p class="oe_mt32">
+
+                        <ul>
+                            <li>Enable VOIP
+                                <ul>
+                                    <li>Enable: Allow user to use Avaya VOIP </li>
+                                    <li>Disabled: Dialplan will not show on top of the screen</li>
+                                </ul>
+                            </li>
+                            <li>Avaya Login: Extension
+                            </li>
+                            <li>Password: Extension Password</li>
+                        </ul>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="oe_container oe_dark">
+    <div class="oe_row">
+        <h4 class="oe_slogan">Based on Avaya WebRTC API Requirements & Guidelines</h4>
+        <div class="oe_span12">
+            <div class="oe_row">
+                <div class="oe_span12">
+                    <p class="oe_mt32">
+                        <ul >
+                            <li>
+                                Avaya IP Office Requirements
+                                <ul>
+                                    <li>Release 11</li>
+                                    <li>IP Office 500v2 & Application Server 
+                                        <br>
+                                        IP Office Server Edition
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                Avaya IP Office License Requirements
+                                <ul>
+                                    <li>Prefered Edition</li>
+                                    <li>Power User License</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </p>
+                    <br>
+                    <hr>
+                    <h4 class="oe_slogan">WebRTC Gateway Signalling Port</h4>
+                    <p class="oe_mt32">
+
+                        <ul>
+                            <li>
+                                The following TCP ports need to be opened in the firewall/corporate router, in case if web clients reside in public internet
+                                <img src="webrtc_signalling_port.png" class="oe_picture oe_screenshot">
+                            </li>
+                        </ul>
+                        
+                    </p>
+                    <br>
+                    <hr>
+                    <h4 class="oe_slogan">WebRTC Gateway Media Port</h4>
+                    <p class="oe_mt32">
+
+                        <ul>
+                            <li>
+                                The below UDP ports need to be opened in the firewall/corporate router in case of clients resides in public internet
+                                <img src="webrtc_media_port.png" class="oe_picture oe_screenshot">
+                            </li>
+                        </ul>
+                    </p>
+                    <hr>
+                    <h4 class="oe_slogan">Certificate Requirements</h4>
+                    <p class="oe_mt32">
+
+                        <ul>
+                            <li>
+                                To improve the security of the WebRTC Gateway link, users should perform the following steps prior to using the client application.
+                                <ul>
+                                    <li>Obtain the CA certificate that signed the identity certificate of the WebRTC Gateway server.</li>
+                                    <li>Install the obtained certificate into Browser's Certificate store and trust the certificate.</li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <br>
+                        <h6>Note:</h6>
+                        
+                        <ul>
+                            <li>if certificate is not installed, Web Client will not be able to connect to gateway</li>
+                            <li>The gateway does not support mutual authentication and hence, does not require clients certificate</li>
+                            <li>The gateway uses the same certificate which one-X portal uses</li>
+                            <li>The CA certificate can be obtained from Web Control Portal</li>
+                            <li>See Avaya IP Office Platform Security Guidelines for more information</li>
+                            <li>Browser required to install and trust CA Certificates of both Primary and Secondary one-X for Resiliency</li>
+                        </ul>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="oe_container oe_dark">
+    <div class="oe_row">
+        <h2 class="oe_slogan">SUPPORT</h2>
+        <p class="oe_mt32">
+            I will provide FREE 90 days support for any doubt, queries, and bug fixing or any type of issues related to this module. This is applicable from the date of purchase. <br>
+            Please note any Avaya related Issue's will not be covered, read carefully the "Based on Avaya WebRTC API Requirements & Guidelines"
+        </p>
+    </div>
+</section>
+
+
+
