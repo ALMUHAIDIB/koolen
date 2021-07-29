@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-name="ReceiptScreenWhatsApp" t-inherit="point_of_sale.ReceiptScreen" t-inherit-mode="extension" owl="1">
+        <xpath expr="//div[hasclass('buttons')]" position="inside">
+            <div class="button js_whatsapp_send" t-on-click="sendToWhatsApp">
+                <i class='fa fa-whatsapp' /> Send Receipt
+            </div>
+        </xpath>
+    </t>
+    <t t-extend="PaymentScreenWidget">
+        <t t-jquery=".button.js_email" t-operation="before">
+            <div class='button js_whatsapp_select' t-if="widget.pos.config.module_account">
+                <i class='fa fa-whatsapp' /> <input type="radio" name="whatsapp_select" value='invoice' t-att-checked="widget.pos.config.default_option == 'invoice' ? 'checked' : undefined"/> Invoice <input type="radio" name="whatsapp_select" value="receipt" t-att-checked="widget.pos.config.default_option == 'receipt' ? 'checked' : undefined"/> Receipt
+            </div>
+        </t>
+    </t>
+    <t t-name="QRCodePopup">
+        <div role="dialog" class="modal-dialog">
+            <div class="popup popup-yes-no">
+                <header class="title"><t t-esc=" widget.options.title || 'Scan QR Code' " /></header>
+                <main class="body"><h5><t t-esc="  widget.options.body || '' "/></h5>
+                <img t-att-src="widget.options.qr_img" alt="no image" class="qr_img" style="height:200px; width:200px;"/>
+                <img src="/whatsapp_all_in_one/static/img/wp.png" alt="img" class="qr_icon"
+                    style="position:absolute;top: 205px;left: 225px;height: 50px;width: 50px;"/>
+                </main>
+                <footer class="footer">
+                    <div class="button confirm highlight">
+                        Send
+                    </div>
+                    <div class="button cancel">
+                        Cancel
+                    </div>
+                </footer>
+            </div>
+        </div>
+    </t>
+</templates>

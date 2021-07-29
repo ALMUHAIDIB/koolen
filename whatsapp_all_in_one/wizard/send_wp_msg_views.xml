@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="send_whatsapp_msg_view_form" model="ir.ui.view">
+        <field name="name">whatsapp.msg.form</field>
+        <field name="model">whatsapp.msg</field>
+        <field name="arch" type="xml">
+            <form string="Send a WhatsApp Message">
+                <sheet>
+                    <group>
+                        <field name="sending_mode"/>
+                        <field name="partner_ids" widget="many2many_tags_mobile" placeholder="Add contacts" context="{'force_mobile':True, 'force_country':True}" attrs="{'invisible': [('sending_mode', '!=', 'numbers')]}"/>
+                        <field name="group_name" attrs="{'invisible': [('sending_mode', '!=', 'group')], 'required': [('sending_mode', '=', 'group')]}"/>
+                        <field name="message" style="height='400px';"/>
+                    </group>
+                    <group col="4">
+                        <field name="attachment_ids" widget="many2many_binary" string="Attach a file" nolabel="1" colspan="2"/>
+                    </group>
+                </sheet>
+                <footer>
+                    <group>
+                        <span>
+                            <button string="Send" type="object" class="oe_highlight send_btn" name="action_send_msg"/>
+                            <button string="Cancel" class="oe_link close_btn" special="cancel" />
+                        </span>
+                    </group>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="whatsapp_qr_view_form" model="ir.ui.view">
+        <field name="name">whatsapp.scan.qr.form</field>
+        <field name="model">whatsapp.scan.qr</field>
+        <field name="arch" type="xml">
+            <form string="Scan WhatsApp QR Code"  class="qr_code_form">
+                <h3 class='text-warning'><i class="fa fa-exclamation-triangle" title="Warning" role="img" aria-label="Warning"/>You are not logged in to WhatsApp, Please Scan QR code and Login</h3>
+                <h3 class='text-info'>Close the window after few seconds, Once you get logged in signal from your mobile device.</h3>
+                <br/>
+                <br/>
+                <style>
+                    .qr_img {
+                        position: relative;
+                        top: 0;
+                        left: 300px;
+                        text-align
+                    }
+                    .qr_icon {
+                        position: absolute;
+                        top: 210px;
+                        left: 410px;
+                        height: 64px;
+                        width: 64px;
+                    }
+                </style>
+                <img src="/whatsapp_all_in_one/static/img/qr.png" alt="img" class="qr_img"/>
+                <img src="/whatsapp_all_in_one/static/img/wp.png" alt="img" class="qr_icon"/>
+                <footer>
+                    <group>
+                        <span>
+                            <button string="Close and Send" type="object" class="oe_highlight send_btn" name="action_send_msg"/>
+                            <button string="Close" class="oe_link close_btn" special="cancel" />
+                        </span>
+                    </group>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="whatsapp_retry_msg_view_form" model="ir.ui.view">
+        <field name="name">whatsapp.retry.msg.form</field>
+        <field name="model">whatsapp.retry.msg</field>
+        <field name="arch" type="xml">
+            <form string="Retry WhatsApp Message">
+                <h3 class='text-danger ml32'><i class="fa fa-exclamation-triangle" title="Warning" role="img" aria-label="Warning"/> Oops, Something went wrong! please click on Retry to send the message</h3>
+                <footer>
+                    <group>
+                        <span>
+                            <button string="Retry" type="object" class="oe_highlight" name="action_retry_send_msg"/>
+                            <button string="Close" class="oe_link" special="cancel" />
+                        </span>
+                    </group>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="send_whatsapp_msg_form_action" model="ir.actions.act_window">
+        <field name="name">Send WhatsApp Message</field>
+        <field name="res_model">whatsapp.msg</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+    <record id="send_whatsapp_msg_template_action" model="ir.actions.act_window">
+        <field name="name">Send Message via WhatsApp</field>
+        <field name="res_model">whatsapp.msg</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="context">{'force_mobile':True, 'force_country':True}</field>
+    </record>
+
+</odoo>

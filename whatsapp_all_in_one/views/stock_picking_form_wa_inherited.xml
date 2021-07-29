@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_picking_form_whatsapp" model="ir.ui.view">
+        <field name="name">stock.picking.whatsapp.form</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="priority">20</field>
+        <field name="arch" type="xml">
+            <xpath expr="//button[last()]" position="after">
+                <button type="action"
+                    name="%(whatsapp_all_in_one.send_whatsapp_msg_template_action)d"
+                    string="  Send By WhatsApp"
+                    class="btn-primary"
+                    aria-label="Send By WhatsApp"
+                    title="Send By WhatsApp"
+                    attrs="{'invisible':['|', ('state', '!=', 'done')]}"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

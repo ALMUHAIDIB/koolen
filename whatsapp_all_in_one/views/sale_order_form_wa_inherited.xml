@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_order_form_whatsapp" model="ir.ui.view">
+        <field name="name">whatsapp.msg.so.whatsapp.form</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="priority">20</field>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='action_quotation_send'][1]" position="after">
+                <button type="action"
+                    name="%(whatsapp_all_in_one.send_whatsapp_msg_template_action)d"
+                    string="  Send By WhatsApp"
+                    class="btn-primary"
+                    aria-label="Send By WhatsApp"
+                    title="Send By WhatsApp"
+                    states="draft"/>
+            </xpath>
+            <xpath expr="//button[@name='action_quotation_send'][last()]" position="after">
+                <button type="action"
+                    name="%(whatsapp_all_in_one.send_whatsapp_msg_template_action)d"
+                    class="btn-lg btn-link mb4 fa fa-whatsapp"
+                    aria-label="Send By WhatsApp"
+                    title="Send By WhatsApp"
+                    states="sent,sale"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
