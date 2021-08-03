@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<templates xml:space="preserve">
+    
+    <t t-name="avaya_voip.VoipConnector">
+        <li class="conn" role="status">
+            <span>
+                Disconnected
+            </span>
+        </li>
+    </t>
+
+    <t t-name="avaya_voip.VoipDial">
+        <input class="form-control dial" type="search" placeholder="Dial.."/>
+    </t>
+
+    <t t-name="avaya_voip.VoipDropdown">
+        <a class="msg_bar animatedBlink nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+            <t t-esc="details"/>
+        </a>
+        <div class="dropdown-menu drp-menu p-4">
+            <div class="btn-group btn-group-sm" role="group" tabindex="-1" aria-label="Call Center">
+                <a t-att-class="btnHangup" role="button" t-att-aria-disabled="enableOncall">
+                    <i class="fa fa-phone fa-fw" role="img" aria-label="End Call" style="color: red;"></i>
+                    HANGUP
+                </a>
+                <a t-att-class="btnMute" role="button" tabindex="-1" t-att-aria-disabled="enableOncall">
+                    <i class="fa fa-microphone fa-fw" role="img" aria-label="End Call" style="color: green;"></i>
+                    MUTE
+                </a>
+                <a t-att-class="btnUnMute" id="btnUnMute" role="button" tabindex="-1" t-att-aria-disabled="enableOncall">
+                    <i class="fa fa-microphone-slash fa-fw" role="img" aria-label="End Call" style="color: red;"></i>
+                    UNMUTE
+                </a>
+                <a href="#" t-att-class=" btnCancel" role="button" tabindex="-1" t-att-aria-disabled="enableCall">
+                    <i class="fa fa-phone fa-fw" role="img" aria-label="Cancel" style="color: grey;"></i>
+                    CANCEL
+                </a>
+            </div>
+            <div class="btn-group btn-group-md" role="group" tabindex="-1" aria-label="Call Center" style="width: 100%;">
+                <a t-att-class="btnHold" role="button" t-att-aria-disabled="enableOncall">
+                    <i class="fa fa-phone fa-fw" role="img" aria-label="End Call" style="color: red;"></i>
+                    HOLD
+                </a>
+                <a t-att-class="btnUnHold" role="button" tabindex="-1" t-att-aria-disabled="enableOncall">
+                    <i class="fa fa-phone fa-fw" role="img" aria-label="End Call" style="color: green;"></i>
+                    UNHOLD
+                </a>
+            </div>
+            <div class="input-group input-group-lg" t-att-style="hideInput">
+                <input id="txt_transfer" type="text" placeholder="Number.." class="form-control txtInput" aria-describedby="btn_transfer"/>
+                <div class="input-group-append">
+                    <a t-att-class=" btnForward" role="button" tabindex="-1" id="btn_transfer" t-att-aria-disabled="enableOncall">
+                        <i class="fa fa-arrows-h fa-fw" role="img" aria-label="Forward" style="color: green;"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </t>
+
+	<t t-name="ContentDialog">
+		<div class="container">
+			<h4><t t-esc="incoming"/></h4>
+		</div>
+	</t>
+</templates>

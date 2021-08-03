@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.voip</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="base_setup.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='integration']" position="inside">
+                <div class="col-12 col-lg-6 o_setting_box">
+                    <div class="o_setting_right_pane">
+                        <!-- <span class="o_form_label">AVAYA VOIP</span> -->
+                        <div class="content-group">
+                            <label for="avaya_ip" string="AVAYA Server: "/>
+                            <field name="avaya_ip"/>
+                        </div>
+                    </div>
+                    <div class="o_setting_right_pane">
+						<div class="content-group">
+							<div class="row mt16">
+								<label for="allow_stun" string="Allow Stun" class="col-lg-4 o-light_label"/>
+								<field name="allow_stun" class="col-lg-8 oe_inline"/>
+							</div>
+						</div>
+						<div class="content-group" attrs="{'invisible': [('allow_stun', '=', False)]}">
+							<div class="row">
+								<label for="avaya_stun_server" string="Stun Server: " class="col-lg-4 oe_light_label"/>
+								<field name="avaya_stun_server" class="col-lg-8 oe_inline" placeholder="Stun Server"/>
+							</div>
+							<div class="row">
+								<label for="stun_port" string="Stun Port: " class="col-lg-4 oe_light_label"/>
+								<field name="stun_port" placeholder="Stun Port" class="col-lg-8 oe_inline"/>
+							</div>
+                        </div>
+						<div class="content-group">
+							<div class="row mt16">
+								<label for="allow_turn" string="Allow Turn" class="col-lg-4 o-light_label"/>
+								<field name="allow_turn" class="col-lg-8 oe_inline"/>
+							</div>
+						</div>
+                        <div class="content-group" attrs="{'invisible': [('allow_turn', '=', False)]}">
+							<div class="row">
+								<label for="avaya_turn_server" string="Turn Server: " class="col-lg-4 oe_light_label"/>
+								<field name="avaya_turn_server" class="col-lg-8 oe_inline" placeholder="Stun Server"/>
+							</div>
+							<div class="row">
+								<label for="turn_user" string="Turn Username: " class="col-lg-4 oe_light_label"/>
+								<field name="turn_user" placeholder="Turn User" class="col-lg-8 oe_inline"/>
+							</div>
+							<div class="row">
+								<label for="turn_pass" string="Turn Password: " class="col-lg-4 oe_light_label"/>
+								<field name="turn_pass" placeholder="Turn Password" password="True" class="col-lg-8 oe_inline"/>
+							</div>
+							<div class="row">
+								<label for="turn_port" string="Turn Port: " class="col-lg-4 oe_light_label"/>
+								<field name="turn_port" placeholder="Turn Port" class="col-lg-8 oe_inline"/>
+							</div>
+                        </div>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>
