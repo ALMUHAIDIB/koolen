@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="partner_send_multi_wp_msg" model="ir.actions.act_window">
+        <field name="name">Send Receipt By WhatsApp</field>
+        <field name="res_model">whatsapp.msg</field>
+        <field name="binding_model_id" ref="model_account_payment"/>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="context">{'default_model': 'account.payment', 'default_res_id': active_id, 'force_mobile': True, 'force_country': True}</field>
+    </record>
+
+    <record id="account_payment_form_whatsapp" model="ir.ui.view">
+        <field name="name">account.payment.whatsapp.form</field>
+        <field name="model">account.payment</field>
+        <field name="inherit_id" ref="account.view_account_payment_form"/>
+        <field name="priority">22</field>
+        <field name="arch" type="xml">
+            <xpath expr="//header//button[last()]" position="after">
+                <button type="action"
+                    name="%(whatsapp_all_in_one.send_whatsapp_msg_template_action)d"
+                    string="  Send By WhatsApp"
+                    class="btn-primary"
+                    aria-label="Send By WhatsApp"
+                    title="Send By WhatsApp"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

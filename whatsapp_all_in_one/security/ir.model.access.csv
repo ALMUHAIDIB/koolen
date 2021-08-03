@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_whatsapp_msg,access_whatsapp_msg,model_whatsapp_msg,base.group_user,1,,1,1
+access_whatsapp_scan_qr,access_whatsapp_scan_qr,model_whatsapp_scan_qr,base.group_user,1,1,1,1
+access_whatsapp_retry_msg,access_whatsapp_retry_msg,model_whatsapp_retry_msg,base.group_user,1,1,1,1
+

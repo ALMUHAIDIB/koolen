@@ -150,8 +150,8 @@ odoo.define('avaya_voip.cstm_dialing_panel', function(require){
                 method: 'search_read',
                 domain: [
                     '|',
-                    ['phone', 'ilike', callerNumber],
-                    ['mobile', 'ilike', callerNumber],
+                    ['phone', '=', callerNumber],
+                    ['mobile', '=', callerNumber],
                 ],
                 fields: ['id', 'name'],
                 limit: 1,

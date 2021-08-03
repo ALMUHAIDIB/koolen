@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="partner_send_multi_wp_msg" model="ir.actions.act_window">
+        <field name="name">Send WhatsApp Message</field>
+        <field name="res_model">whatsapp.msg</field>
+        <field name="binding_model_id" ref="model_res_partner"/>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="context" eval="{'from_multi_action': True, 'force_mobile': True, 'force_country': True}"/>
+    </record>
+
+    <record id="partner_form_whatsapp_form_view" model="ir.ui.view">
+        <field name="name">res.partner.whatsapp.form</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="priority">22</field>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='mobile']" position="replace">
+                <label for="mobile"/>
+                <div class="o_row">
+                    <field name="mobile" widget="phone"/>
+                    <button
+                        type="action"
+                        name="%(whatsapp_all_in_one.send_whatsapp_msg_form_action)d"
+                        class="btn-sm btn-link mb4 fa fa-whatsapp"
+                        aria-label="Send WhatsApp Message"
+                        title="Send WhatsApp Message"
+                        attrs="{'invisible':[('mobile', '=', False)]}"
+                        context="{'field_name': 'mobile', 'force_mobile': True, 'force_country': True}"
+                        />
+                    </div>
+                </xpath>
+        </field>
+    </record>
+
+    <record id="view_partner_simple_form_inherit_mobile_widget" model="ir.ui.view">
+        <field name="name">res.partner.simplified.form.inherit.mobile.widget</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_simple_form"/>
+        <field name="priority">22</field>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='email']" position="replace">
+                <field name="email" widget="email" context="{'gravatar_image': True}" attrs="{'required': [('user_ids','!=', [])]}"/>
+            </xpath>
+            <xpath expr="//field[@name='mobile']" position="replace">
+                <field name="mobile" widget="phone" required="context.get('force_mobile', False)" />
+            </xpath>
+            <xpath expr="//field[@name='mobile']" position="after">
+                <field name="country_id" placeholder="Country" class="o_address_country" options='{"no_open": True, "no_create": True}' required="context.get('force_country', False)" />
+            </xpath>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="pos_config_whatsapp_inherit_view_form" model="ir.ui.view">
+        <field name="name">pos.config.form.view.inherit.whatsapp</field>
+        <field name="model">pos.config</field>
+        <field name="priority" eval="22"/>
+        <field name="inherit_id" ref="point_of_sale.pos_config_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@id='receipt']" position="after">
+                <h2>WhatsApp</h2>
+                <div class="row mt16 o_settings_container" id="whatsapp_config">
+                    <div class="col-12 col-lg-6 o_setting_box">
+                        <div class="o_setting_left_pane">
+                            <field name="auto_whatsapp_invoice"/>
+                        </div>
+                        <div class="o_setting_right_pane">
+                            <label for="auto_whatsapp_invoice"/>
+                            <div class="text-muted">
+                                Send POS Receipt or Invoice Automatically to Customer's WhatsApp Number
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-6 o_setting_box">
+                        <div class="o_setting_right_pane">
+                            <label for="default_option"/>
+                            <div class="text-muted" id="whatsapp_default_option">
+                                Select default option to send via WhatsApp
+                            </div>
+                            <div class="content-group mt16">
+                                <div class="row mt16">
+                                    <label string="Option" for="default_option" class="col-lg-3 o_light_label"/>
+                                    <field name="default_option" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>

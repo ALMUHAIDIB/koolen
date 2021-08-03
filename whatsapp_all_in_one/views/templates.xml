@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="assets_backend" name="whatsapp_assets" inherit_id="web.assets_backend">
+            <xpath expr="." position="inside">
+                <script type="text/javascript" src="/whatsapp_all_in_one/static/src/js/many2many_tags_mobile.js"></script>
+                <script type="text/javascript" src="/whatsapp_all_in_one/static/src/js/refresh_qr_code.js"></script>
+            </xpath>
+        </template>
+        <template id="assets" inherit_id="point_of_sale.assets">
+          <xpath expr="." position="inside">
+
+              <script type="text/javascript" src="/whatsapp_all_in_one/static/src/js/ReceiptScreen/ReceiptScreen.js"></script>
+              <!-- <script type="text/javascript" src="/whatsapp_all_in_one/static/src/js/popup.js"></script> -->
+              <!-- <script type="text/javascript" src="/whatsapp_all_in_one/static/src/js/pos_whatsapp.js"></script> -->
+          </xpath>
+        </template>
+    </data>
+</odoo>
